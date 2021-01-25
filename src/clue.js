@@ -103,18 +103,18 @@ function selectRandom(array) {
 };
 
 function pickMystery() {
-    let suspect = selectRandom(suspectsArray);
-    let weapon = selectRandom(weaponsArray);
-    let room = selectRandom(roomsArray);
+    const envelope = {
+        suspect: "", weapon: "", room: ""
+    };
+
+    envelope.suspect = selectRandom(suspectsArray);
+    envelope.weapon = selectRandom(weaponsArray);
+    envelope.room = selectRandom(roomsArray);
     
-    return {suspect:suspect, weapon:weapon, room:room};
+    return envelope;
 };
+
 // ITERATION 3
-function revealMystery({envelope}) {
-    pickMystery()
-    let unsubFirstName = JSON.stringify(envelope.suspect.firstName);
-    let unsubLastName = JSON.stringify(envelope.suspect.lastName);
-    let weapon = JSON.stringify(envelope.weapon.name);
-    let room = JSON.stringify(envelope.room.name);
-    return `${unsubFirstName} ${unsubLastName} killed Mr. Boddy using the ${weapon} in the ${room}!`;
-}
+function revealMystery(envelope) {
+    return `${envelope.suspect.firstName} ${envelope.suspect.lastName} killed Mr. Boddy using the ${envelope.weapon.name} in the ${envelope.room.name}!`;
+};
